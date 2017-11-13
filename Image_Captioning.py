@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[24]:
-
-
 get_ipython().magic('matplotlib inline')
 import torch
 import torch.nn as nn
