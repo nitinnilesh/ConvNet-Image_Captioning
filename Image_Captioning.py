@@ -320,28 +320,3 @@ print('Finished Training')
 features = cnn(inputs)
 outputs = lstm(features)
 print(emd2wd(outputs, word_list))
-
-
-# In[ ]:
-
-
-for i, data in enumerate(dataloader):
-    for j in range(10):
-        inputs, captions = data['image'], data['captions']
-        inputs, captions = Variable(inputs, requires_grad=True), captions
-        optimizer.zero_grad()
-        cnn.zero_grad()
-        lstm.zero_grad()
-        features = cnn(inputs)
-        outputs = lstm(features)
-        print(emd2wd(outputs, word_list))
-        loss = loss_fun(outputs, captions)
-        loss.backward()
-        optimizer.step()
-        running_loss += loss.data[0]
-        if i % 2 == 1:
-            print('[%d, %5d] loss: %.3f' %(epoch + 1, i + 1, running_loss / 20))
-            running_loss = 0.0
-    break
-print('Finished Training')
-
